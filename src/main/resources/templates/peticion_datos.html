@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Introduce datos</title>
+    <script>
+        function ocultaContrasena() {
+            var contrasena=document.getElementById("contrasena");
+            if (contrasena.type==="password"){
+                contrasena.type = "text";
+            } else {
+                contrasena.type = "password";
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="#" th:action="@{/form}" method="POST" enctype="multipart/form-data">
+    <select name="seleccion" id="seleccion">
+        <option th:each="alias : ${aliases}"
+                th:value="${alias}"
+                th:text="${alias}"></option>
+    </select>
+    <br>
+    <br>
+    <br>
+    <input type="password" name="contrasena" id="contrasena"><br>
+    <input type="checkbox" name="check" id="check" onclick="ocultaContrasena()"> Mostrar contraseña
+    <br>
+    <textarea name="json" id="json" placeholder="Introduce el JSON-LD"></textarea>
+    <br>
+    <br>
+    <input type="hidden" name="archivo" id="archivo" th:value="${archivo}">
+    <br>
+    <br>
+    <button type="submit">Crear JWS</button>
+</form>
+</body>
+</html>
